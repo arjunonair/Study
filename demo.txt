@@ -1,1 +1,2 @@
 Demo page
+Editing  this page demonstrates the use of some features
