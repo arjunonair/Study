@@ -13,4 +13,4 @@ jobs:
 
       - name: print value
         id: step2
-        run: echo "color is ${{ env.action}}
+        run: echo "color is ${{ env.action}}"
