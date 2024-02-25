@@ -1,0 +1,32 @@
+name: custom environment vars
+
+on: workflow_dispatch
+
+jobs:
+  custom_GITHUB_ENV:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set the value
+        id: step_one
+        run : echo "action_state=yellow" >> $GITHUB_ENV
+
+      - name: print value
+        id: step_two
+        run: echo "${{ env.action_state}}"
+  artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name : load artifact
+        run : echo "Hi iam the file that is being shared among the jobs" > file.txt
+      - uses : actions/upload-artifact@v2
+        with:
+          name: file
+          path: file.txt
+  artifact2:
+    runs-on: ubuntu-latest
+    needs : artifact
+    steps:
+      - uses : actions/download-artifact@v2
+        with:
+          name: file
+      - run : cat file.txt

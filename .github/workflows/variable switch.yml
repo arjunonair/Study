@@ -1,0 +1,13 @@
+name: parsing value bw steps
+
+on : workflow_dispatch
+
+jobs:
+  var_pass :
+    runs-on: ubuntu-latest
+    steps:
+      - name : pass value initialize
+        id: var_source
+        run: echo "::set-output name=varName::Arjun"
+      - name: pass value use
+        run : echo "${{steps.var_source.outputs.varName}}"
