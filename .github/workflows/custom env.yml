@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: set the value
         id: step1
-        run : echo "action=yellow" >> $GITHUB_ENV
+        run : echo "action_state=yellow" >> $GITHUB_ENV
 
       - name: print value
         id: step2
-        run: echo "color is ${{ env.action}}"
+        run: echo "${{ env.action_state}}"
