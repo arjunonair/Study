@@ -1,0 +1,20 @@
+name: Environment
+
+on:
+    workflow_dispatch
+
+env:
+    Greeting : Hello
+    day : friday
+jobs:
+    mainjob:
+        name: print greeting
+        runs-on: ubuntu-latest
+        steps:
+        - name: print step job
+          run: |
+            echo "$Greeting on $day"
+            echo "${{env.day_here}}"
+
+          env:
+            day_here : monday
