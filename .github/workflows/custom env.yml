@@ -1,0 +1,16 @@
+name: custom environment vars
+
+on:
+  workflow_dispatch:
+
+jobs:
+  custom_env:
+    runs-on: windows-latest
+    steps:
+      - name: set the value
+        id: step1
+        run : echo "action=yellow" >> $GITHUB_ENV
+
+      - name: print value
+        id: step2
+        run: echo "color is ${{ env.action}}
