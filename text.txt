@@ -1,0 +1,40 @@
+name: A test workflow
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches : ["main"]
+  #allows manually to run in actions
+  workflow_dispatch:
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses:  actions/checkout@v3
+      - name: Run a one-liner command
+        run: echo Hello World!
+      - name: Run multi-liner command
+        run: |
+          echo Add other commands here
+          echo This is another line
+
+  build-api:
+      needs: build-app
+      runs-on: windows-latest
+      steps:
+        - name: Display the GitHub context, event
+          run: echo display
+
+  build-null:
+      runs-on: windows-latest
+      needs: [build-app, build-api]
+      steps:
+        - name: show null
+          run : echo null
+
+  To remove a file
+    git rm file name
+    to restore
+    git reset HEAD filename
